@@ -5,6 +5,15 @@ import { collections } from "./database";
 export const employeeRouter = express.Router();
 employeeRouter.use(express.json());
 
+/**
+ * @swagger
+ * /employees:
+ *  get:
+ *    description: Use to request all employees
+ *    responses:
+ *      '200':
+ *        description: A successful response
+ */
 employeeRouter.get("/", async (_req, res) => {
     try {
         const employees = await collections.employees.find({}).toArray();
@@ -14,6 +23,15 @@ employeeRouter.get("/", async (_req, res) => {
     }
 });
 
+/**
+ * @swagger
+ * /:id:
+ *  get:
+ *    description: Use to request all employees
+ *    responses:
+ *      '200':
+ *        description: A successful response
+ */
 employeeRouter.get("/:id", async (req, res) => {
     try {
         const id = req?.params?.id;
